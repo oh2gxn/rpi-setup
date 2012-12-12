@@ -103,5 +103,10 @@ fi
 
 
 ### xmonad window manager???
-#apt-get install xmonad # will install X
-#something to make xmonad run after boot?
+apt-get install xmonad # will install X
+# something to make xmonad run after boot
+$HOME=/home/janne
+echo '$HOME/.xmonad/xmonad-arm-linux' > $HOME/.xsession
+
+#apt-get install hsetroot # for setting wallpaper image
+#some setup files to $HOME/.xmonad/ ...
