@@ -102,11 +102,15 @@ fi
 
 
 
-### xmonad window manager???
-apt-get install xmonad # will install X
-# something to make xmonad run after boot
+### X, XDM, and xmonad window manager
+apt-get install xorg xdm xmonad
+# something to make xmonad run after login
 $HOME=/home/janne
 echo '$HOME/.xmonad/xmonad-arm-linux' > $HOME/.xsession
 
-#apt-get install hsetroot # for setting wallpaper image
-#some setup files to $HOME/.xmonad/ ...
+### Some software to go with xmonad
+# hsetroot for setting the wallpaper, urxvt terminal, slock for locking the screen
+apt-get install hsetroot rxvt-unicode suckless-tools
+
+# setup xmonad in $HOME/.xmonad/xmonad.hs ...
+#cp xmonad.hs $HOME/.xmonad/

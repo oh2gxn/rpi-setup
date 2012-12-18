@@ -16,8 +16,10 @@ import qualified Data.Map as M
 --import XMonad.Util.EZConfig
 
 
--- The preferred programs, which are used in a bindings below and by
--- certain contrib modules.
+-- The preferred programs
+-- myTerminal      = "konsole"
+-- myTerminal      = "xterm"
+-- myTerminal      = "gnome-terminal" -- Ubuntu default?
 myTerminal      = "urxvt"
 myEditor        = "emacs"
 
@@ -35,7 +37,8 @@ myBorderWidth   = 3
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
-myModMask       = mod1Mask
+-- NOTE: mod1Mask used by Emacs and keyboard layout switch
+myModMask       = mod4Mask
 
 
 -- The default number of workspaces (virtual screens) and their names.
@@ -44,7 +47,6 @@ myModMask       = mod1Mask
 -- of this list.
 --
 -- A tagging example:
---
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 myWorkspaces    = ["term","code","web","mail","pdf"] ++ map show [6..9]
 
@@ -101,14 +103,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
 
-    -- Rotate screen left ???
-    , ((modm		     , xK_a     ), spawn "xrandr --output LVDS --rotate left; hsetroot -fill ~/.xmonad/wallpaper" )
+    -- <janne>
+    -- Rotate screen left (absolute, 90 deg CCW from normal)
+    , ((modm		     , xK_a     ), spawn "xrandr -o left" )
 
-    -- Rotate screen normal ???
-    , ((modm		     , xK_s     ), spawn "xrandr --output LVDS --rotate normal; hsetroot -fill ~/.xmonad/wallpaper" )
+    -- Rotate screen back to normal
+    , ((modm		     , xK_s     ), spawn "xrandr -o normal" )
 
-    -- Rotate screen left ???
-    , ((modm		     , xK_d     ), spawn "xrandr --output LVDS --rotate right; hsetroot -fill ~/.xmonad/wallpaper" )
+    -- Rotate screen right (absolute, 90 deg CW from normal)
+    , ((modm		     , xK_d     ), spawn "xrandr -o right" )
+    -- FIXME: Rotate wallpaper too?
+    -- </janne>
 
 
  
@@ -138,14 +143,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
 
+    -- <janne>
     -- Lock the screen with mod-shift-l
-    --, ((modm .|. shiftMask, xK_l), spawn "gnome-screensaver-command --lock" )
+    , ((modm .|. shiftMask, xK_l), spawn "slock" )
 
     -- Lock the screen with pause/break
-    --, ((0, xK_Pause), spawn "gnome-screensaver-command --lock" )
+    , ((0, xK_Pause), spawn "slock" )
 
-    -- Swap keyboard layout between fi and ru with Alt-space???
-    --, ((modm, xK_Escape), spawn "setxkbmap -option '' -layout 'fi,ru' -option 'grp:alt_space_toggle'")
+    -- Swap keyboard layout between fi and ru with Alt-space
+    , ((mod1Mask, xK_space), spawn "setxkbmap -option '' -layout 'fi,ru' -option 'grp:alt_space_toggle'")
+    -- </janne>
+
 
  
     -- Push window back into tiling
@@ -221,8 +229,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 main = do
 
 -- Set the background image
---   spawn "Esetroot ~/.xmonad/wallpaper"
    spawn "hsetroot -fill ~/.xmonad/wallpaper"
+
+-- Rotate screen by default?
+--   spawn "xrandr -o left"
 
 -- Start xmonad
    xmonad $ defaultConfig {
