@@ -33,10 +33,11 @@ myFocusFollowsMouse = True
 myBorderWidth   = 3
 
 
--- modMask lets you specify which modkey you want to use. The default
--- is mod1Mask ("left alt").  You may also consider using mod3Mask
--- ("right alt"), which does not conflict with emacs keybindings. The
--- "windows key" is usually mod4Mask.
+-- modMask lets you specify which modkey you want to use. 
+-- mod1Mask "left alt", the default
+-- mod2Mask "num lock" by default, but remapped to "caps lock" now (?)
+-- mod3Mask "right alt"
+-- mod4Mask "windows key" usually 
 -- NOTE: mod1Mask used by Emacs and keyboard layout switch
 myModMask       = mod4Mask
 

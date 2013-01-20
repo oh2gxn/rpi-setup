@@ -104,9 +104,16 @@ fi
 
 ### X, XDM, and xmonad window manager
 apt-get install xorg xdm xmonad
-# something to make xmonad run after login
+# use CapsLock as mod2, may or may not be required in xmonad
 $HOME=/home/janne
-echo '$HOME/.xmonad/xmonad-arm-linux' > $HOME/.xsession
+USE_CAPS_MOD=1
+if [USE_CAPS_MOD]; then
+    echo 'xmodmap -e "remove Lock = Caps_Lock"' >> $HOME/.xsession
+    echo 'xmodmap -e "clear mod2"' >> $HOME/.xsession
+    echo 'xmodmap -e "add Mod2 = Caps_Lock"' >> $HOME/.xsession
+fi
+# something to make xmonad run after login
+echo '$HOME/.xmonad/xmonad-arm-linux' >> $HOME/.xsession
 
 ### Some software to go with xmonad
 # hsetroot for setting the wallpaper, urxvt terminal, slock for locking the screen
