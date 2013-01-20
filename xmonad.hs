@@ -39,7 +39,7 @@ myBorderWidth   = 3
 -- mod3Mask "right alt"
 -- mod4Mask "windows key" usually 
 -- NOTE: mod1Mask used by Emacs and keyboard layout switch
-myModMask       = mod4Mask
+myModMask       = mod2Mask
 
 
 -- The default number of workspaces (virtual screens) and their names.
