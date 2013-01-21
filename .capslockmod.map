@@ -1,0 +1,4 @@
+! Use CapsLock as a modifier key
+remove Lock = Caps_Lock
+clear Mod2
+add Mod2 = Caps_Lock

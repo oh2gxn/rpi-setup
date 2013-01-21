@@ -34,12 +34,11 @@ myBorderWidth   = 3
 
 
 -- modMask lets you specify which modkey you want to use. 
--- mod1Mask "left alt", the default
--- mod2Mask "num lock" by default, but remapped to "caps lock" now (?)
--- mod3Mask "right alt"
--- mod4Mask "windows key" usually 
--- NOTE: mod1Mask used by Emacs and keyboard layout switch
-myModMask       = mod2Mask
+-- mod1Mask "left alt", the default, but used by Emacs and keyboard layout switch
+-- mod2Mask "num lock" by default(?), but remapping to "caps lock" doesn't work
+-- mod3Mask "right alt", but used for typing @£${[]}\€ etc. on fi keyboard
+-- mod4Mask "windows key" usually, but does not work on NanoX keyboard
+myModMask       = mod4Mask
 
 
 -- The default number of workspaces (virtual screens) and their names.

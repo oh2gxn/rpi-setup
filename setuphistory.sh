@@ -1,3 +1,4 @@
+
 #!/bin/bash
 #
 # This script file documents the settings made on my Raspberry Pi
@@ -104,14 +105,17 @@ fi
 
 ### X, XDM, and xmonad window manager
 apt-get install xorg xdm xmonad
-# use CapsLock as mod2, may or may not be required in xmonad
+
 $HOME=/home/janne
-USE_CAPS_MOD=1
+
+# use CapsLock as mod2, may or may not be required in xmonad
+USE_CAPS_MOD=0
 if [USE_CAPS_MOD]; then
-    echo 'xmodmap -e "remove Lock = Caps_Lock"' >> $HOME/.xsession
-    echo 'xmodmap -e "clear mod2"' >> $HOME/.xsession
-    echo 'xmodmap -e "add Mod2 = Caps_Lock"' >> $HOME/.xsession
+    # NOTE: this doesn't seem to work
+    cp .capslockmod.map $HOME/
+    echo 'xmodmap .capslockmod.map' >> $HOME/.xsession
 fi
+
 # something to make xmonad run after login
 echo '$HOME/.xmonad/xmonad-arm-linux' >> $HOME/.xsession
 
@@ -120,7 +124,7 @@ echo '$HOME/.xmonad/xmonad-arm-linux' >> $HOME/.xsession
 apt-get install hsetroot rxvt-unicode suckless-tools
 
 # setup xmonad in $HOME/.xmonad/xmonad.hs ...
-#cp xmonad.hs $HOME/.xmonad/
+cp .xmonad/xmonad.hs $HOME/.xmonad/
 
 # setup urxvt colors and fonts
-#cp .Xdefaults $HOME/
+cp .Xdefaults $HOME/
