@@ -126,5 +126,5 @@ apt-get install hsetroot rxvt-unicode suckless-tools
 # setup xmonad in $HOME/.xmonad/xmonad.hs ...
 cp .xmonad/xmonad.hs $HOME/.xmonad/
 
-# setup urxvt colors and fonts
+# setup urxvt colors and fonts... maybe bigger default font..?
 cp .Xdefaults $HOME/

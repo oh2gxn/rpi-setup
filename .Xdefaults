@@ -2,6 +2,7 @@
 
 ! Color/font settings like in Debian's uxterm
 
+!URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 URxvt.color0: black
 URxvt.color1: red3
