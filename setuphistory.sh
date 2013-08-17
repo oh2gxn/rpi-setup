@@ -8,6 +8,9 @@
 #
 # Author: Janne Toivola
 
+# Username
+USERNAME='janne'
+
 # The new version does not have rpi-update from Hexxeh
 wget http://goo.gl/1BOfJ -O /usr/bin/rpi-update && chmod +x /usr/bin/rpi-update
 
@@ -52,7 +55,7 @@ ldconfig
 ## User privileges for graphics
 #chmod a+rw /dev/vchiq
 echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
-usermod -a -G video janne
+usermod -a -G video $USERNAME
 
 
 
@@ -106,7 +109,8 @@ fi
 ### X, XDM, and xmonad window manager
 apt-get install xorg xdm xmonad
 
-$HOME=/home/janne
+# mess some settings in the user's home directory
+$HOME="/home/$USERNAME"
 
 # use CapsLock as mod2, may or may not be required in xmonad
 USE_CAPS_MOD=0
@@ -128,3 +132,9 @@ cp .xmonad/xmonad.hs $HOME/.xmonad/
 
 # setup urxvt colors and fonts... maybe bigger default font..?
 cp .Xdefaults $HOME/
+
+
+
+
+# Audio
+apt-get install alsa-base alsa-utils
