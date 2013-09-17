@@ -29,13 +29,13 @@ rpi-update
 ### Some software
 apt-get update
 apt-get upgrade
-apt-get install sudo
+apt-get install sudo raspi-config curl
 
 ## GCC and other programming tools
 apt-get install gcc libtool flex bison gdb build-essential git
 
 ## GNU emacs
-apt-get install emacs23-nox emacs23-el python-mode
+apt-get install emacs23-nox emacs23-el emacs-goodies-el python-mode
 
 
 
