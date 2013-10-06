@@ -11,25 +11,35 @@
 # Username
 USERNAME='janne'
 
-# The new version does not have rpi-update from Hexxeh
-wget http://goo.gl/1BOfJ -O /usr/bin/rpi-update && chmod +x /usr/bin/rpi-update
 
 ## Set better memory split for 3D graphics, default split was 224/32
-SPLIT=128  # for video and advanced 3D
+#SPLIT=128  # for video and advanced 3D, on 256MB Raspi
 #SPLIT=192 # for video or simple 3D
 #SPLIT=224 # for no video or 3D
-cp /boot/arm"$SPLIT"_start.elf /boot/start.elf
+## NOTE: this was the old way of doing it
+#cp /boot/arm"$SPLIT"_start.elf /boot/start.elf
 
-## Firmware update
-rpi-update
+## Firmware update, NOTE: these were some old stuff
+#rpi-update
 #reboot
+
+## The new version does not have rpi-update from Hexxeh
+## https://raw.github.com/Hexxeh/rpi-update/master/rpi-update
+#wget http://goo.gl/1BOfJ -O /usr/bin/rpi-update && chmod +x /usr/bin/rpi-update
+#rpi-update
+GPUMEM=128 # or even 256 for 512MB Raspi...
+#echo "gpu_mem=$GPUMEM" >> /boot/config.txt
+#reboot
+
+## Apparently, also raspi-config is gone
+# apt-get install raspi-config curl
 
 
 
 ### Some software
 apt-get update
 apt-get upgrade
-apt-get install sudo raspi-config curl
+apt-get install sudo
 
 ## GCC and other programming tools
 apt-get install gcc libtool flex bison gdb build-essential git
