@@ -148,3 +148,8 @@ cp .Xdefaults $HOME/
 
 # Audio
 apt-get install alsa-base alsa-utils
+
+
+
+# RTC etc.
+apt-get install i2c-tools libi2c-dev python-smbus
