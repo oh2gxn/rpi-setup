@@ -11,6 +11,7 @@
 # Username
 USERNAME='janne'
 
+RPIREV=2 # Rasp.PI revision: 1 for 256MB model B, 2 for 512MB model B
 
 ## Set better memory split for 3D graphics, default split was 224/32
 #SPLIT=128  # for video and advanced 3D, on 256MB Raspi
@@ -18,19 +19,23 @@ USERNAME='janne'
 #SPLIT=224 # for no video or 3D
 ## NOTE: this was the old way of doing it
 #cp /boot/arm"$SPLIT"_start.elf /boot/start.elf
-
+#
 ## Firmware update, NOTE: these were some old stuff
 #rpi-update
 #reboot
-
+#
 ## The new version does not have rpi-update from Hexxeh
 ## https://raw.github.com/Hexxeh/rpi-update/master/rpi-update
 #wget http://goo.gl/1BOfJ -O /usr/bin/rpi-update && chmod +x /usr/bin/rpi-update
 #rpi-update
-GPUMEM=128 # or even 256 for 512MB Raspi...
+if [RPIREV = 1]; then
+    GPUMEM=128
+else
+    GPUMEM=256 # or even 256 for 512MB Raspi...
+fi
 #echo "gpu_mem=$GPUMEM" >> /boot/config.txt
 #reboot
-
+#
 ## Apparently, also raspi-config is gone
 # apt-get install raspi-config curl
 
@@ -146,12 +151,27 @@ cp .Xdefaults $HOME/
 
 
 
-# Audio
+## Audio for bytebeat etc...
 apt-get install alsa-base alsa-utils
 
 
 
-# RTC etc.
+## RTC etc. I2C stuff
 apt-get install i2c-tools libi2c-dev python-smbus
 echo i2c-bcm2708 >> /etc/modules
 echo i2c-dev >> /etc/modules
+# reboot, check that DS1307 RTC module from Adafruit etc. is connected to P1 pins 3 & 4
+if [RPIREV = 1]; then
+    RTCBUS=0
+else
+    # Model B 2.0 uses SCA1, SCL1 for I2C
+    RTCBUS=1
+fi
+i2cdetect -y $RTCBUS
+# RTC in address 0x68
+RTCADDR=0x68
+# Load and use RTC set at boot
+sed -i '' -e 's/exit\ 0/#RTC/' /etc/rc.local
+echo "echo ds1307 $RTCADDR > /sys/class/i2c-adapter/i2c-$RTCBUS/new_device" >> /etc/rc.local
+echo "exit 0" >> /etc/rc.local
+echo rtc-ds1307 >> /etc/modules
