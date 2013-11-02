@@ -14,7 +14,7 @@ USERNAME='janne'
 RPIREV=2 # Rasp.PI revision: 1 for 256MB model B, 2 for 512MB model B
 
 ## Set better memory split for 3D graphics, default split was 224/32
-#SPLIT=128  # for video and advanced 3D, on 256MB Raspi
+#SPLIT=128 # for video and advanced 3D, on 256MB Raspi
 #SPLIT=192 # for video or simple 3D
 #SPLIT=224 # for no video or 3D
 ## NOTE: this was the old way of doing it
@@ -48,6 +48,9 @@ apt-get install sudo
 
 ## GCC and other programming tools
 apt-get install gcc libtool flex bison gdb build-essential git
+
+## Python stuff
+apt-get install python-numpy python-scipy python-opengl
 
 ## GNU emacs
 apt-get install emacs23-nox emacs23-el emacs-goodies-el python-mode
