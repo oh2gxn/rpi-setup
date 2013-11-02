@@ -5,8 +5,9 @@
 !too small URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 !still too small URxvt.font: -adobe-courier-medium-r-normal--18-180-75-75-m-110-iso10646-1
 !URxvt.font: -adobe-courier-medium-r-normal--24-240-75-75-m-150-iso10646-1    
-URxvt.font: -b&h-lucidatypewriter-medium-r-normal-sans-24-240-75-75-m-140-iso10646-1
-URxvt*boldFont: -b&h-lucidatypewriter-bold-r-normal-sans-24-240-75-75-m-140-iso10646-1
+!URxvt.font: -b&h-lucidatypewriter-medium-r-normal-sans-24-240-75-75-m-140-iso10646-1
+URxvt.font: -b&h-lucidatypewriter-medium-r-normal-sans-34-240-100-100-m-200-iso10646-1
+URxvt*boldFont: -b&h-lucidatypewriter-bold-r-normal-sans-34-240-100-100-m-200-iso10646-1
 URxvt.color0: black
 URxvt.color1: red3
 URxvt.color2: green3
