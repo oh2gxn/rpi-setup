@@ -35,6 +35,8 @@ else
 fi
 #echo "gpu_mem=$GPUMEM" >> /boot/config.txt
 #reboot
+# NOTE: there were also other settings in config.txt.
+# http://elinux.org/RPiconfig
 #
 ## Apparently, also raspi-config is gone
 # apt-get install raspi-config curl
@@ -152,6 +154,8 @@ cp .xmonad/xmonad.hs $HOME/.xmonad/
 apt-get install fontconfig
 cp .Xdefaults $HOME/
 
+# This might help with virtual terminal
+echo 'setfont /usr/share/consolefonts/Lat15-Terminus20x10.psf.gz' >> $HOME/.bashrc
 
 
 ## Audio for bytebeat etc...
