@@ -182,3 +182,8 @@ sed -i '' -e 's/exit\ 0/#RTC/' /etc/rc.local
 echo "echo ds1307 $RTCADDR > /sys/class/i2c-adapter/i2c-$RTCBUS/new_device" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 echo rtc-ds1307 >> /etc/modules
+
+
+
+## Some ham radio software...
+apt-get install libhamlib-dev libhamlib2 libusb-dev
