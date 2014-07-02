@@ -184,6 +184,12 @@ echo "exit 0" >> /etc/rc.local
 echo rtc-ds1307 >> /etc/modules
 
 
+## GPIO from shell: pin 17 -> opto isolator -> RCA jack
+#echo 17  > /sys/class/gpio/export
+#echo out > /sys/class/gpio/gpio17/direction
+#echo 1   > /sys/class/gpio/gpio17/value  # ON
+#echo 0   > /sys/class/gpio/gpio17/value  # OFF
+
 
 ## Some ham radio software...
 apt-get install libhamlib-dev libhamlib2 libusb-dev
