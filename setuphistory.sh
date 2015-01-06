@@ -156,6 +156,9 @@ cp .Xdefaults $HOME/
 
 # This might help with virtual terminal
 echo 'setfont /usr/share/consolefonts/Lat15-Terminus20x10.psf.gz' >> $HOME/.bashrc
+# ...and this helps in displaying pdf files etc. with less
+echo "LESSOPEN='|/usr/bin/lesspipe %s'"  >> $HOME/.bashrc
+
 
 
 ## Audio for bytebeat etc...
