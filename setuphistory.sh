@@ -17,7 +17,7 @@ RPIREV=2 # Rasp.PI revision: 1 for 256MB model B, 2 for 512MB model B
 #SPLIT=128 # for video and advanced 3D, on 256MB Raspi
 #SPLIT=192 # for video or simple 3D
 #SPLIT=224 # for no video or 3D
-## NOTE: this was the old way of doing it
+## NOTE: this was the oldest way of doing it
 #cp /boot/arm"$SPLIT"_start.elf /boot/start.elf
 #
 ## Firmware update, NOTE: these were some old stuff
@@ -40,6 +40,14 @@ fi
 #
 ## Apparently, also raspi-config is gone
 # apt-get install raspi-config curl
+#
+## Yet another way: Device Tree and /boot/config.txt
+echo "dtparam=audio=on,i2c=on" >> /boot/config.txt
+echo "dtoverlay=i2c-rtc,ds1307=on" >> /boot/config.txt
+echo "dtdebug=on" >> /boot/config.txt
+#reboot
+#sudo vcdbg log msg
+## NOTE: Any of the above is probably outdated by tomorrow!
 
 
 
@@ -140,15 +148,14 @@ if [USE_CAPS_MOD]; then
     echo 'xmodmap .capslockmod.map' >> $HOME/.xsession
 fi
 
-# something to make xmonad run after login
+# settings to make xmonad run after login
+cp .xmonad/xmonad.hs $HOME/.xmonad/
+xmonad --recompile
 echo '$HOME/.xmonad/xmonad-arm-linux' >> $HOME/.xsession
 
 ### Some software to go with xmonad
 # hsetroot for setting the wallpaper, urxvt terminal, slock for locking the screen
 apt-get install hsetroot rxvt-unicode suckless-tools
-
-# setup xmonad in $HOME/.xmonad/xmonad.hs ...
-cp .xmonad/xmonad.hs $HOME/.xmonad/
 
 # setup urxvt colors and fonts... maybe bigger default font..?
 apt-get install fontconfig
@@ -163,10 +170,11 @@ echo "LESSOPEN='|/usr/bin/lesspipe %s'"  >> $HOME/.bashrc
 
 ## Audio for bytebeat etc...
 apt-get install alsa-base alsa-utils
+# TODO: audio seems b0rken, blame Device Tree?
 
 
 
-## RTC etc. I2C stuff
+## RTC etc. I2C stuff, NOTE: possibly controlled automagically by Device Tree?
 apt-get install i2c-tools libi2c-dev python-smbus
 echo i2c-bcm2708 >> /etc/modules
 echo i2c-dev >> /etc/modules
