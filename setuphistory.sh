@@ -204,3 +204,8 @@ echo rtc-ds1307 >> /etc/modules
 
 ## Some ham radio software...
 apt-get install libhamlib-dev libhamlib2 libusb-dev
+
+## Some internet of stuff...
+apt-get install nodejs npm
+npm install -g particle-cli
+#particle setup
