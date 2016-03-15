@@ -205,6 +205,15 @@ echo rtc-ds1307 >> /etc/modules
 ## Some ham radio software...
 apt-get install libhamlib-dev libhamlib2 libusb-dev
 
+## Upgrade from Wheezy to Jessie (ignore LibreOffice and other desktop bloat)
+## https://www.raspberrypi.org/forums/viewtopic.php?t=121880
+#sed 's/wheezy/jessie/' /etc/apt/sources.list
+#echo "deb http://archive.raspberrypi.org/debian jessie main ui" > /etc/apt/sources.list.d/raspi.list
+#mkdir -p $HOME/.config/autostart
+#apt-get update
+#apt-get dist-upgrade # answer Yes to most of the changes
+#reboot
+
 ## Some internet of stuff...
 apt-get install nodejs npm
 npm install -g particle-cli
