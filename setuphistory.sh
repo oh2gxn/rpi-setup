@@ -215,6 +215,8 @@ apt-get install libhamlib-dev libhamlib2 libusb-dev
 #reboot
 
 ## Some internet of stuff...
-apt-get install nodejs npm
-npm install -g particle-cli
+#apt-get install nodejs npm # Jessie has "node 0.10.29" and "npm 1.4.21", too old for particle-cli
+curl -sL https://deb.nodesource.com/setup_0.12 | bash - # FIXME: ARMv7 binary, but RPi 1 is ARMv6!
+apt-get install nodejs
+npm install -g particle-cli # "particle-cli 1.11.0" needs at least "node 0.12"
 #particle setup
