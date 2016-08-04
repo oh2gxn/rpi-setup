@@ -148,6 +148,11 @@ if [USE_CAPS_MOD]; then
     echo 'xmodmap .capslockmod.map' >> $HOME/.xsession
 fi
 
+# make sure you have the correct keyboard layout
+# before getting frustrated with typing in the password
+echo 'setxkbmap fi,ru' >> $HOME/.xsession
+# another option: dpkg-reconfigure keyboard-configuration
+
 # settings to make xmonad run after login
 cp .xmonad/xmonad.hs $HOME/.xmonad/
 xmonad --recompile
