@@ -6,12 +6,18 @@
 # with minimal setup.
 # This is not intended to be run as such...
 #
+# Some pointers added for Pi 3 Model B (64bit, rev 1.2)
+#
 # Author: Janne Toivola
 
 # Username
 USERNAME='janne'
 
-RPIREV=2 # Rasp.PI revision: 1 for 256MB model B, 2 for 512MB model B
+# Rasp.PI revision:
+# - 1 for 256MB model B (original),
+# - 2 for 512MB model B,
+# - 3 for 1GB, 64-bit model B
+RPIREV=3
 
 ## Set better memory split for 3D graphics, default split was 224/32
 #SPLIT=128 # for video and advanced 3D, on 256MB Raspi
@@ -42,13 +48,13 @@ fi
 # apt-get install raspi-config curl
 #
 ## Yet another way: Device Tree and /boot/config.txt
-echo "dtparam=audio=on,i2c=on" >> /boot/config.txt
-echo "dtoverlay=i2c-rtc,ds1307=on" >> /boot/config.txt
-echo "dtdebug=on" >> /boot/config.txt
+#echo "dtparam=audio=on,i2c=on" >> /boot/config.txt
+#echo "dtoverlay=i2c-rtc,ds1307=on" >> /boot/config.txt
+#echo "dtdebug=on" >> /boot/config.txt
 #reboot
 #sudo vcdbg log msg
 ## NOTE: Any of the above is probably outdated by tomorrow!
-
+raspi-config # Interfaces -> SSH -> Enabled (after changing the default users etc.)
 
 
 ### Some software
@@ -63,8 +69,10 @@ apt-get install gcc libtool flex bison gdb build-essential git
 apt-get install python-numpy python-scipy python-opengl
 
 ## GNU emacs
-apt-get install emacs23-nox emacs23-el emacs-goodies-el python-mode
+apt-get install emacs25-nox emacs25-el emacs-goodies-el python-mode
 
+## Go stuff
+apt-get install golang golang-mode
 
 
 
@@ -152,6 +160,7 @@ fi
 # before getting frustrated with typing in the password
 echo 'setxkbmap fi,ru' >> $HOME/.xsession
 # another option: dpkg-reconfigure keyboard-configuration
+# ...or raspi-config
 
 # settings to make xmonad run after login
 cp .xmonad/xmonad.hs $HOME/.xmonad/
@@ -180,6 +189,7 @@ apt-get install alsa-base alsa-utils
 
 
 ## RTC etc. I2C stuff, NOTE: possibly controlled automagically by Device Tree?
+# TODO: figure this out for RPi 3 BCM2837
 apt-get install i2c-tools libi2c-dev python-smbus
 echo i2c-bcm2708 >> /etc/modules
 echo i2c-dev >> /etc/modules
@@ -208,7 +218,7 @@ echo rtc-ds1307 >> /etc/modules
 
 
 ## Some ham radio software...
-apt-get install libhamlib-dev libhamlib2 libusb-dev
+apt-get install libhamlib-dev libhamlib2 libusb-dev fldigi
 
 ## Upgrade from Wheezy to Jessie (ignore LibreOffice and other desktop bloat)
 ## https://www.raspberrypi.org/forums/viewtopic.php?t=121880
@@ -225,3 +235,7 @@ curl -sL https://deb.nodesource.com/setup_0.12 | bash - # FIXME: ARMv7 binary, b
 apt-get install nodejs
 npm install -g particle-cli # "particle-cli 1.11.0" needs at least "node 0.12"
 #particle setup
+
+
+## Some games
+apt-get install crawl
